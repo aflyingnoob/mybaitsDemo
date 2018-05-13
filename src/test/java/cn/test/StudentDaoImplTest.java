@@ -20,14 +20,22 @@ public class StudentDaoImplTest {
 
     @Test
     public void insertStudentCacheId() {
+        Student student = new Student("张ii",96,77);
+        System.out.println("前"+student);
+        dao.insertStudentCacheId(student);
+        System.out.println("后"+student);
     }
 
     @Test
     public void deleteStudent() {
+        dao.deleteStudent(1);
     }
 
     @Test
     public void updateStudent() {
+        Student student = new Student("赵邢",96,77);
+        student.setId(2);
+        dao.updateStudent(student);
     }
 
     @Test

@@ -12,4 +12,11 @@
             select @@identity
         </selectKey>
     </insert>
+    <delete id="deleteStudent">
+        delete from student where id =#{xxx}
+    </delete>
+
+    <update id="updateStudent">
+        update student set name =#{name},age=#{age},score=#{score} where id = #{id};
+    </update>
 </mapper>

@@ -26,18 +26,57 @@ public class StudentDaoImpl implements dao {
     }
 
     public void insertStudentCacheId(Student student) {
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            sqlSession.insert("insertStudentCacheId",student);
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
 
     }
     public void deleteStudent(int id) {
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            sqlSession.insert("deleteStudent",id);
+            sqlSession.commit();
 
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
     }
 
     public void updateStudent(Student student) {
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            sqlSession.update("updateStudent",student);
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
 
     }
 
     public List<Student> selectAllStudents() {
-        return null;
+
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
     }
 
     public Map<String, Object> selectAllStudentsMap() {
