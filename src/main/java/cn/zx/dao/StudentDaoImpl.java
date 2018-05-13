@@ -4,6 +4,7 @@ import cn.zx.beans.Student;
 import cn.zx.utils.MyBaitsUtils;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class StudentDaoImpl implements dao {
         try {
             sqlSession = MyBaitsUtils .getSqlSession();
             sqlSession.update("updateStudent",student);
-            sqlSession.commit();
+
 
         }finally {
             if(sqlSession!=null){
@@ -66,10 +67,10 @@ public class StudentDaoImpl implements dao {
     }
 
     public List<Student> selectAllStudents() {
-
+        List<Student> students = null;
         try {
             sqlSession = MyBaitsUtils .getSqlSession();
-
+            students = sqlSession.selectList("selectAllStudents");
             sqlSession.commit();
 
         }finally {
@@ -77,17 +78,53 @@ public class StudentDaoImpl implements dao {
                 sqlSession.close();
             }
         }
+        return students;
     }
 
     public Map<String, Object> selectAllStudentsMap() {
-        return null;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            map = sqlSession.selectMap("selectAllStudents","name");
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return map;
     }
 
     public Student selectStudentById(int id) {
-        return null;
+        Student student = null;
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            student = sqlSession.selectOne("selectStudentById",id);
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return student;
     }
 
     public List<Student> selectStudentsByName(String name) {
-        return null;
+
+        List<Student> students = null;
+        try {
+            sqlSession = MyBaitsUtils .getSqlSession();
+            students = sqlSession.selectList("selectStudentsByName",name);
+            sqlSession.commit();
+
+        }finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return students;
     }
 }

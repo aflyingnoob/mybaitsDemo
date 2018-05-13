@@ -1,9 +1,13 @@
 package cn.test;
 
 import cn.zx.beans.Student;
-import cn.zx.dao.*;
+import cn.zx.dao.StudentDaoImpl;
+import cn.zx.dao.dao;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
 
 public class StudentDaoImplTest {
     dao dao;
@@ -40,17 +44,34 @@ public class StudentDaoImplTest {
 
     @Test
     public void selectAllStudents() {
+       List<Student> students =  dao.selectAllStudents();
+       if(students != null){
+           for (Student student : students){
+               System.out.println(student);
+           }
+       }
     }
 
     @Test
     public void selectAllStudentsMap() {
+       Map<String,Object> map =  dao.selectAllStudentsMap();
+        System.out.println(map.get("张ii"));
     }
 
     @Test
     public void selectStudentById() {
+        Student student = dao.selectStudentById(2);
+        System.out.println(student);
+
     }
 
     @Test
     public void selectStudentsByName() {
+        List<Student> students =  dao.selectStudentsByName("张");
+        if(students != null){
+            for (Student student : students){
+                System.out.println(student);
+            }
+        }
     }
 }

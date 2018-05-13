@@ -19,4 +19,17 @@
     <update id="updateStudent">
         update student set name =#{name},age=#{age},score=#{score} where id = #{id};
     </update>
+    <select id="selectAllStudents" resultType="Student">
+        select id,name,age,score from student
+    </select>
+
+    <select id="selectStudentById" resultType="Student">
+        select id,name,age,score from student where id =#{jjj}
+    </select>
+
+    <select id="selectStudentsByName" resultType="Student">
+       <!--select id,name,age,score from student where name like concat('%',#{xxx},'%') -->
+ <!--select id,name,age,score from student where name like  '%' #{xxx} '%'-->
+ select id,name,age,score from student where name like  '%${value}%'
+    </select>
 </mapper>
